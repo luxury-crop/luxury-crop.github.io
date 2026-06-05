@@ -152,6 +152,32 @@ svg { display: block; }
 .toast.err { background: var(--accent-d); }
 .toast svg { width: 17px; height: 17px; }
 
+/* ---------- auth / login gate ---------- */
+.login-gate {
+  position: fixed; inset: 0; z-index: 200;
+  background: linear-gradient(145deg, #1f140d 0%, #3a2214 55%, #2a1a0e 100%);
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  transition: opacity .35s var(--ease);
+}
+.login-gate.hidden { opacity: 0; pointer-events: none; }
+.login-card {
+  background: var(--panel); border-radius: 22px; padding: 34px 30px 30px;
+  width: 100%; max-width: 390px;
+  box-shadow: 0 28px 64px rgba(0,0,0,.45); text-align: center;
+}
+.login-logo { height: 44px; width: auto; margin: 0 auto 20px; mix-blend-mode: multiply; }
+.login-title { font-family: 'Cairo'; font-size: 21px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.login-sub { font-size: 13px; color: var(--muted); margin: 0 0 24px; }
+.login-form .field { text-align: right; margin-bottom: 14px; }
+.login-err {
+  font-size: 13px; color: var(--accent-d); background: var(--accent-soft);
+  border-radius: 9px; padding: 9px 13px; margin-bottom: 10px;
+  text-align: right; display: none;
+}
+.login-err.show { display: block; }
+.login-btn { width: 100%; justify-content: center; font-size: 15px; padding: 12px; margin-top: 6px; }
+.login-btn:disabled { opacity: .6; cursor: not-allowed; transform: none !important; }
+
 /* ---------- file input (hidden) ---------- */
 .hidden-file { display: none; }
 .banner { background: var(--amber-soft); border: 1px solid #ecdcae; color: #6b5410; border-radius: 11px; padding: 10px 13px; font-size: 12.5px; margin-bottom: 12px; display: flex; gap: 8px; align-items: flex-start; }

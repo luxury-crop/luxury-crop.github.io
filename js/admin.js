@@ -15,6 +15,62 @@
   var KEY = 'luxurycrop.menu';
   var $ = function (s, r) { return (r || document).querySelector(s); };
 
+  // ============================================================
+  //  AUTH  (SHA-256 via SubtleCrypto + sessionStorage)
+  //  Credentials are hashed — plain-text password never stored.
+  // ============================================================
+  var AUTH_USER = 'admin';
+  var AUTH_HASH = 'c5842beb091169cc14704dea0720b71df5f2c7f0675c5030ded7cb389ad46d9b'; // SHA-256('luxurycrop2026')
+  var AUTH_KEY  = 'lc.auth.v1';   // sessionStorage key (auto-clears on tab close)
+
+  function sha256(str) {
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
+      .then(function (buf) {
+        return Array.from(new Uint8Array(buf))
+          .map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+      });
+  }
+  function isAuthed() {
+    try { return sessionStorage.getItem(AUTH_KEY) === '1'; } catch (e) { return false; }
+  }
+  function setAuthed() {
+    try { sessionStorage.setItem(AUTH_KEY, '1'); } catch (e) {}
+  }
+  function hideGate() {
+    var g = document.getElementById('loginGate');
+    if (g) g.classList.add('hidden');
+  }
+  function wireLogin(onSuccess) {
+    var form = document.getElementById('loginForm');
+    var err  = document.getElementById('lgErr');
+    var btn  = document.getElementById('lgBtn');
+    if (!form) { onSuccess(); return; }   // no gate in DOM → skip
+    document.getElementById('lgUser').focus();
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var user = document.getElementById('lgUser').value.trim();
+      var pass = document.getElementById('lgPass').value;
+      err.classList.remove('show');
+      btn.disabled = true;
+      btn.textContent = '…';
+      sha256(pass).then(function (hash) {
+        if (user === AUTH_USER && hash === AUTH_HASH) {
+          setAuthed();
+          hideGate();
+          onSuccess();
+        } else {
+          err.textContent = 'اسم المستخدم أو كلمة المرور غير صحيحة.';
+          err.classList.add('show');
+          document.getElementById('lgPass').value = '';
+          document.getElementById('lgPass').focus();
+          btn.disabled = false;
+          btn.textContent = 'دخول';
+        }
+      });
+    });
+  }
+  // ============================================================
+
   // ---------- helpers ----------
   function esc(s) {
     return String(s == null ? '' : s)
@@ -418,5 +474,13 @@
     render(); setDirty(false); refreshPreview();
   }
 
-  document.addEventListener('DOMContentLoaded', function () { wire(); load(); });
+  document.addEventListener('DOMContentLoaded', function () {
+    if (isAuthed()) {
+      hideGate();
+      wire();
+      load();
+    } else {
+      wireLogin(function () { wire(); load(); });
+    }
+  });
 })();

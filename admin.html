@@ -14,6 +14,30 @@
   <link rel="icon" href="assets/logo.jpg">
 </head>
 <body>
+
+  <!-- ===== AUTH GATE ===== -->
+  <div class="login-gate" id="loginGate">
+    <div class="login-card">
+      <img class="login-logo" src="assets/logo.png" alt="محصول فاخر">
+      <h2 class="login-title">لوحة التحكم</h2>
+      <p class="login-sub">محصول فاخر · إدارة المنيو</p>
+      <form class="login-form" id="loginForm" autocomplete="on" novalidate>
+        <div class="field">
+          <label for="lgUser">اسم المستخدم</label>
+          <input type="text" id="lgUser" name="username"
+                 autocomplete="username" dir="ltr" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="lgPass">كلمة المرور</label>
+          <input type="password" id="lgPass" name="password"
+                 autocomplete="current-password" dir="ltr">
+        </div>
+        <div class="login-err" id="lgErr" role="alert"></div>
+        <button class="btn primary login-btn" type="submit" id="lgBtn">دخول</button>
+      </form>
+    </div>
+  </div>
+
   <!-- TOPBAR -->
   <header class="topbar">
     <img class="logo" id="brandLogo" alt="Luxury Crop">
