@@ -209,7 +209,7 @@
     $('langBtn').innerHTML = I.get('globe') + '<span>' + esc(ti.langBtn) + '</span>';
 
     // hero
-    $('heroLogo').src = b.logo || 'assets/logo.jpg';
+    $('heroLogo').src = 'assets/logo-white.png';  /* dark hero needs white logo variant */
     $('heroLogo').alt = esc(nm(b, 'name') || 'Luxury Crop');
     $('brandAr').textContent = b.name_ar || '';   // logo carries the Latin wordmark; show the Arabic name in both modes
     $('tagline').textContent = nm(b, 'tagline') || '';
