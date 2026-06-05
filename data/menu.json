@@ -1,0 +1,1114 @@
+{
+  "_meta": {
+    "schema_version": 1,
+    "generated": "2026-06-05",
+    "source": "https://luxury-crop.easymenu.site (crawled — data only, no design)",
+    "note": "kcal & caffeine_mg are ESTIMATES for display (nutrition_estimated=true) — café confirms via admin; UI shows a disclaimer. allergens are inferred from ingredients and must be confirmed (allergens_confirmed=false)."
+  },
+  "brand": {
+    "name_ar": "محصول فاخر",
+    "name_en": "Luxury Crop",
+    "tagline_ar": "قهوة مختصة",
+    "tagline_en": "Specialty Coffee",
+    "logo": "assets/logo.png",
+    "theme": {
+      "bg": "#ffffff",
+      "ink": "#0a0a0a",
+      "accent": "#e1352b",
+      "muted": "#6b6b6b"
+    },
+    "location_ar": "الطائف",
+    "location_en": "Taif",
+    "rating": 4.8,
+    "instagram": "https://instagram.com/luxurycrop1",
+    "tiktok": "",
+    "maps": "https://maps.app.goo.gl/AF6MZdCkoQJ8n6vCA",
+    "whatsapp_admin": "201065736335"
+  },
+  "allergen_ref": [
+    {
+      "key": "gluten",
+      "ar": "جلوتين",
+      "en": "Gluten"
+    },
+    {
+      "key": "crustaceans",
+      "ar": "قشريات",
+      "en": "Crustaceans"
+    },
+    {
+      "key": "eggs",
+      "ar": "بيض",
+      "en": "Eggs"
+    },
+    {
+      "key": "fish",
+      "ar": "أسماك",
+      "en": "Fish"
+    },
+    {
+      "key": "peanuts",
+      "ar": "فول سوداني",
+      "en": "Peanuts"
+    },
+    {
+      "key": "soy",
+      "ar": "صويا",
+      "en": "Soy"
+    },
+    {
+      "key": "milk",
+      "ar": "حليب",
+      "en": "Milk"
+    },
+    {
+      "key": "treenuts",
+      "ar": "مكسرات",
+      "en": "Tree nuts"
+    },
+    {
+      "key": "celery",
+      "ar": "كرفس",
+      "en": "Celery"
+    },
+    {
+      "key": "mustard",
+      "ar": "خردل",
+      "en": "Mustard"
+    },
+    {
+      "key": "sesame",
+      "ar": "سمسم",
+      "en": "Sesame"
+    },
+    {
+      "key": "sulphites",
+      "ar": "كبريتات",
+      "en": "Sulphites"
+    },
+    {
+      "key": "lupin",
+      "ar": "ترمس",
+      "en": "Lupin"
+    },
+    {
+      "key": "molluscs",
+      "ar": "رخويات",
+      "en": "Molluscs"
+    }
+  ],
+  "categories": [
+    {
+      "id": "22755",
+      "slug": "pourover",
+      "name_ar": "القهوة المقطّرة",
+      "name_en": "Pour-Over",
+      "sub_ar": "قهوة مختصة محضّرة بالتقطير",
+      "sub_en": "Specialty hand-brewed coffee",
+      "items": [
+        {
+          "id": "170272",
+          "name_ar": "ديمانتي",
+          "name_en": "Diamante",
+          "desc_ar": "ديمانتي كولومبيا معالجة لاهوائية إيحاءات (الكشمش - الحمضيات - الخزامى - الأزهار) إرتفاع 1600 - 1400 م",
+          "desc_en": "Colombian, anaerobic process. Notes of blackcurrant, citrus, lavender & florals. Altitude 1400–1600 m.",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 8,
+          "caffeine_mg": 140,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170273",
+          "name_ar": "V60 أثيوبيا سادو",
+          "name_en": "V60 Ethiopia Sidamo",
+          "desc_ar": "اثيوبيا من منطقة سيدامو بسلالة هيرلوم إيحاءات فاكهية (التوت الأزرق- الفراولة- العنب) معالجة مجففة - الارتفاع 2000 متر",
+          "desc_en": "Ethiopian Sidamo heirloom. Fruity notes of blueberry, strawberry & grape. Natural process, 2000 m.",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 8,
+          "caffeine_mg": 140,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170275",
+          "name_ar": "قهوه اليوم",
+          "name_en": "Coffee of the Day",
+          "desc_ar": "قهوة سوداء",
+          "desc_en": "Black filter coffee.",
+          "price": 9,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 5,
+          "caffeine_mg": 95,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170276",
+          "name_ar": "كولد برو",
+          "name_en": "Cold Brew",
+          "desc_ar": "قهوة مقطرة ليوم كامل بتركيز عالي",
+          "desc_en": "Coffee steeped a full day for a high-concentration brew.",
+          "price": 24,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 5,
+          "caffeine_mg": 200,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "192502",
+          "name_ar": "إثيوبي فاخر كوشريه",
+          "name_en": "Ethiopia Kushere (Premium)",
+          "desc_ar": "قهوة اثيوبية فاخرة",
+          "desc_en": "Premium Ethiopian coffee.",
+          "price": 20,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 8,
+          "caffeine_mg": 140,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "192998",
+          "name_ar": "إل كاستيا كولمبي",
+          "name_en": "El Castillo Colombia",
+          "desc_ar": "",
+          "desc_en": "",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 8,
+          "caffeine_mg": 140,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "192999",
+          "name_ar": "سيلفادور",
+          "name_en": "El Salvador",
+          "desc_ar": "",
+          "desc_en": "",
+          "price": 20,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 8,
+          "caffeine_mg": 140,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "201079",
+          "name_ar": "تروبيكال فرش",
+          "name_en": "Tropical Fresh",
+          "desc_ar": "",
+          "desc_en": "",
+          "price": 22,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 10,
+          "caffeine_mg": 130,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "22804",
+      "slug": "espresso",
+      "name_ar": "الإسبريسو",
+      "name_en": "Espresso",
+      "sub_ar": "حبوب مختصة فاخرة",
+      "sub_en": "Premium single-origin shots",
+      "items": [
+        {
+          "id": "180992",
+          "name_ar": "سيلفادور فاخر",
+          "name_en": "El Salvador (Premium)",
+          "desc_ar": "بن سليفادور فاخر",
+          "desc_en": "Premium El Salvador beans.",
+          "price": 14,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 10,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "182671",
+          "name_ar": "اثيوبي فاخر",
+          "name_en": "Ethiopia (Premium)",
+          "desc_ar": "اسبريسو من أجود أنواع البن الاثيوبي",
+          "desc_en": "Espresso from the finest Ethiopian beans.",
+          "price": 14,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 10,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "22756",
+      "slug": "hot",
+      "name_ar": "المشروبات الساخنة",
+      "name_en": "Hot Drinks",
+      "sub_ar": "إسبريسو ومشروبات حليب ساخنة",
+      "sub_en": "Espresso & hot milk drinks",
+      "items": [
+        {
+          "id": "170278",
+          "name_ar": "ماكياتو",
+          "name_en": "Macchiato",
+          "desc_ar": "دبل اسبريسو - فوم",
+          "desc_en": "Double espresso, foam.",
+          "price": 14,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 30,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170279",
+          "name_ar": "أمريكانو حار",
+          "name_en": "Hot Americano",
+          "desc_ar": "قهوة سوداء",
+          "desc_en": "Black coffee.",
+          "price": 14,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 10,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170280",
+          "name_ar": "كورتادو",
+          "name_en": "Cortado",
+          "desc_ar": "دبل اسبريسو - حليب",
+          "desc_en": "Double espresso, milk.",
+          "price": 14,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 70,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170281",
+          "name_ar": "فلات وايت",
+          "name_en": "Flat White",
+          "desc_ar": "دبل اسبريسو - حليب",
+          "desc_en": "Double espresso, milk.",
+          "price": 15,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 120,
+          "caffeine_mg": 130,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170282",
+          "name_ar": "كابتشينو",
+          "name_en": "Cappuccino",
+          "desc_ar": "دبل اسبريسو - حليب",
+          "desc_en": "Double espresso, milk.",
+          "price": 16,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 110,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170283",
+          "name_ar": "لاتيه",
+          "name_en": "Latte",
+          "desc_ar": "دبل اسبريسو - حليب",
+          "desc_en": "Double espresso, milk.",
+          "price": 16,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 150,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170284",
+          "name_ar": "سبانش لاتيه",
+          "name_en": "Spanish Latte",
+          "desc_ar": "دبل اسبريسو - وصفة الاسبانيش الخاصة",
+          "desc_en": "Double espresso with our special Spanish recipe.",
+          "price": 17,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 220,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170288",
+          "name_ar": "لاتيه كراميل",
+          "name_en": "Caramel Latte",
+          "desc_ar": "حليب - دبل اسبريسو - نكهة الكراميل",
+          "desc_en": "Milk, double espresso, caramel.",
+          "price": 17,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 250,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170289",
+          "name_ar": "هوت شوكلت",
+          "name_en": "Hot Chocolate",
+          "desc_ar": "حليب بالشوكلاته البلجيكية",
+          "desc_en": "Milk with Belgian chocolate.",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 300,
+          "caffeine_mg": 20,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170290",
+          "name_ar": "شاي أسود",
+          "name_en": "Black Tea",
+          "desc_ar": "شاي إنجليزي",
+          "desc_en": "English tea.",
+          "price": 6,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 2,
+          "caffeine_mg": 47,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "176539",
+          "name_ar": "قهوة اليوم كبير",
+          "name_en": "Coffee of the Day (Large)",
+          "desc_ar": "قهوة اليوم محضرة من أجود أنواع البن ( كوستاريكي- اثيوبي- كولمبي )",
+          "desc_en": "Daily coffee from the finest beans (Costa Rican, Ethiopian, Colombian).",
+          "price": 12,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 10,
+          "caffeine_mg": 150,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "176540",
+          "name_ar": "قهوة اليوم",
+          "name_en": "Coffee of the Day",
+          "desc_ar": "قهوة اليوم محضرة من أجود أنواع البن ( كوستاريكي- اثيوبي- كولمبي )",
+          "desc_en": "Daily coffee from the finest beans (Costa Rican, Ethiopian, Colombian).",
+          "price": 9,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 8,
+          "caffeine_mg": 110,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "180991",
+          "name_ar": "شاي أخضر",
+          "name_en": "Green Tea",
+          "desc_ar": "",
+          "desc_en": "",
+          "price": 6,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 2,
+          "caffeine_mg": 28,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "22757",
+      "slug": "cold",
+      "name_ar": "المشروبات الباردة",
+      "name_en": "Cold Drinks",
+      "sub_ar": "مشروبات قهوة مثلّجة",
+      "sub_en": "Iced coffee drinks",
+      "items": [
+        {
+          "id": "170291",
+          "name_ar": "اسبيرسو ألفريدو",
+          "name_en": "Espresso Freddo",
+          "desc_ar": "اسبريسو مبخر",
+          "desc_en": "Steamed espresso, served cold.",
+          "price": 14,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 15,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170292",
+          "name_ar": "أمريكانو",
+          "name_en": "Iced Americano",
+          "desc_ar": "قهوة سوداء",
+          "desc_en": "Black coffee.",
+          "price": 14,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 10,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170293",
+          "name_ar": "لاتيه",
+          "name_en": "Iced Latte",
+          "desc_ar": "دبل اسبريسو مع حليب",
+          "desc_en": "Double espresso with milk.",
+          "price": 17,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 140,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170294",
+          "name_ar": "سبانش لاتيه",
+          "name_en": "Iced Spanish Latte",
+          "desc_ar": "دبل اسبريسو مع وصفة الاسبانيش الخاصة",
+          "desc_en": "Double espresso with our special Spanish recipe.",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 230,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170298",
+          "name_ar": "كراميل ميكاتو",
+          "name_en": "Caramel Macchiato",
+          "desc_ar": "اسبريسو مع فوم",
+          "desc_en": "Espresso with foam.",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 250,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170299",
+          "name_ar": "آيس شوكلت",
+          "name_en": "Iced Chocolate",
+          "desc_ar": "حليب بالشوكلاته البلجيكية",
+          "desc_en": "Milk with Belgian chocolate.",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 280,
+          "caffeine_mg": 20,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "171004",
+          "name_ar": "مياه",
+          "name_en": "Water",
+          "desc_ar": "(نوفا- صفا- بيرين)",
+          "desc_en": "(Nova / Safa / Berain).",
+          "price": 1,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 0,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "22758",
+      "slug": "matcha",
+      "name_ar": "مشروبات ماتشا باردة",
+      "name_en": "Cold Matcha",
+      "sub_ar": "ماتشا يابانية مختصة",
+      "sub_en": "Japanese specialty matcha",
+      "items": [
+        {
+          "id": "170300",
+          "name_ar": "ماتشا كلاسيك بارد",
+          "name_en": "Classic Iced Matcha",
+          "desc_ar": "أجود أنواع الماتشا اليابانية بدون إضافات إختيارات الحليب ( صويا، كوكنت، لوز، حليب بقري ) إختيارات إضافية: (فانيليا، كارميل ) 4 SR",
+          "desc_en": "Finest Japanese matcha, no additives. Milk options (soy, coconut, almond, dairy) + flavor add-ons.",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 120,
+          "caffeine_mg": 70,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170301",
+          "name_ar": "بِنك ماتشا",
+          "name_en": "Pink Matcha",
+          "desc_ar": "أجود أنواع الماتشا اليابانية بنكهة الورد مع حليب الصويا.",
+          "desc_en": "Finest Japanese matcha, rose flavor, with soy milk.",
+          "price": 22,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "soy"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 180,
+          "caffeine_mg": 70,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170302",
+          "name_ar": "ماتشا لافندر",
+          "name_en": "Lavender Matcha",
+          "desc_ar": "أجود أنواع الماتشا اليابانية مع نكهة اللافندر و حليب الكوكنت .",
+          "desc_en": "Finest Japanese matcha, lavender flavor, with coconut milk.",
+          "price": 22,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "treenuts"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 190,
+          "caffeine_mg": 70,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "171003",
+          "name_ar": "ماتشا توت",
+          "name_en": "Berry Matcha",
+          "desc_ar": "أجود أنواع الماتشا اليابانية بنكهة التوت وحليب الصويا ويتم تزيينها بقطع التوت المجفف بالتبريد.",
+          "desc_en": "Finest Japanese matcha, berry flavor, soy milk, topped with freeze-dried berries.",
+          "price": 22,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "soy"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 200,
+          "caffeine_mg": 70,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "22759",
+      "slug": "hibiscus",
+      "name_ar": "كركديه",
+      "name_en": "Hibiscus",
+      "sub_ar": "كركديه طائفي منعش",
+      "sub_en": "Refreshing Taif hibiscus",
+      "items": [
+        {
+          "id": "170305",
+          "name_ar": "كركديه كلاسيك",
+          "name_en": "Classic Hibiscus",
+          "desc_ar": "",
+          "desc_en": "",
+          "price": 16,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 80,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170306",
+          "name_ar": "كركديه روز",
+          "name_en": "Rose Hibiscus",
+          "desc_ar": "كركديه بطعم الورد الطائفي",
+          "desc_en": "Hibiscus with Taif rose flavor.",
+          "price": 16,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 90,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "22760",
+      "slug": "bakery",
+      "name_ar": "المخبوزات والحلا",
+      "name_en": "Bakery & Sweets",
+      "sub_ar": "حلويات وكيك طازج",
+      "sub_en": "Fresh cakes & desserts",
+      "items": [
+        {
+          "id": "170309",
+          "name_ar": "كوكيز رقائق الشوكولاته",
+          "name_en": "Chocolate Chip Cookie",
+          "desc_ar": "كوكيز مع رقائق الشوكلاته البلجيكية الفاخرة",
+          "desc_en": "Cookie with premium Belgian chocolate chips.",
+          "price": 12,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 220,
+          "caffeine_mg": 5,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170310",
+          "name_ar": "كوكنت مانجو",
+          "name_en": "Coconut Mango Cake",
+          "desc_ar": "كيك مع صوص المانجو وجوز الهند",
+          "desc_en": "Cake with mango sauce and coconut.",
+          "price": 20,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs",
+            "treenuts"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 400,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170311",
+          "name_ar": "ماتيلدا كيك شوكلاته",
+          "name_en": "Matilda Chocolate Cake",
+          "desc_ar": "ماتيلدا كيك شوكلاته بلجيكية",
+          "desc_en": "Matilda cake with Belgian chocolate.",
+          "price": 20,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 410,
+          "caffeine_mg": 10,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170313",
+          "name_ar": "تراميسو",
+          "name_en": "Tiramisu",
+          "desc_ar": "طبقة بسكوت فاخرة (ليدي فنجر) مشربة بالقهوة ومضاف إليها كريمة وطبقة من بودرة الكاكاو",
+          "desc_en": "Premium ladyfinger layers soaked in coffee, cream, and a cocoa dusting.",
+          "price": 20,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 380,
+          "caffeine_mg": 30,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170315",
+          "name_ar": "تشيز كيك مانجو",
+          "name_en": "Mango Cheesecake",
+          "desc_ar": "مكونات التشيز كيك مضاف إليها طبقة صوص المانجو",
+          "desc_en": "Cheesecake topped with a mango sauce layer.",
+          "price": 20,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 420,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "193000",
+          "name_ar": "كوكيز شوكلاته Dark",
+          "name_en": "Dark Chocolate Cookie",
+          "desc_ar": "كوكيز Dark شوكلاته بلجيكية",
+          "desc_en": "Dark Belgian chocolate cookie.",
+          "price": 12,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 220,
+          "caffeine_mg": 10,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "193001",
+          "name_ar": "براوني",
+          "name_en": "Brownie",
+          "desc_ar": "قطعة براوني فاخرة بالشوكلاتة البلجيكية",
+          "desc_en": "Premium brownie with Belgian chocolate.",
+          "price": 16,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 350,
+          "caffeine_mg": 15,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "201080",
+          "name_ar": "سينابون رولز",
+          "name_en": "Cinnamon Rolls",
+          "desc_ar": "لفائف القرفة",
+          "desc_en": "Cinnamon rolls.",
+          "price": 16,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 330,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "22761",
+      "slug": "addons",
+      "name_ar": "الإضافات",
+      "name_en": "Add-ons",
+      "sub_ar": "إضافات وتعديلات على مشروبك",
+      "sub_en": "Extras & customizations",
+      "items": [
+        {
+          "id": "170318",
+          "name_ar": "اضافه حليب نباتي ( لوز , جوز هند , صويا )",
+          "name_en": "Plant Milk Add-on (Almond / Coconut / Soy)",
+          "desc_ar": "",
+          "desc_en": "",
+          "price": 5,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "treenuts",
+            "soy"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 30,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170319",
+          "name_ar": "اضافه نكهة",
+          "name_en": "Flavor Add-on",
+          "desc_ar": "",
+          "desc_en": "",
+          "price": 5,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 20,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170977",
+          "name_ar": "هوت شوكلت + اسبريسو حار",
+          "name_en": "Hot Chocolate + Hot Espresso",
+          "desc_ar": "",
+          "desc_en": "",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 300,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170978",
+          "name_ar": "هوت شوكلت + اسبيرسو بارد",
+          "name_en": "Hot Chocolate + Iced Espresso",
+          "desc_ar": "",
+          "desc_en": "",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 300,
+          "caffeine_mg": 125,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        }
+      ]
+    },
+    {
+      "id": "23584",
+      "slug": "mojito",
+      "name_ar": "موهيتو",
+      "name_en": "Mojito",
+      "sub_ar": "موهيتو منعش بنكهات",
+      "sub_en": "Refreshing flavored mojitos",
+      "items": [
+        {
+          "id": "170303",
+          "name_ar": "موهيتو توت أزرق",
+          "name_en": "Blueberry Mojito",
+          "desc_ar": "موهيتو بنكهة التوت الأزرق والكوكنت",
+          "desc_en": "Mojito with blueberry and coconut flavor.",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 140,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170304",
+          "name_ar": "موهيتو خوخ",
+          "name_en": "Peach Mojito",
+          "desc_ar": "موهيتو بنكهة الخوخ وزهرة البرتقال",
+          "desc_en": "Mojito with peach and orange-blossom flavor.",
+          "price": 18,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 140,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        }
+      ]
+    }
+  ]
+}

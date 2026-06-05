@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>محصول فاخر | Luxury Crop — المنيو</title>
+  <meta name="description" content="منيو محصول فاخر — قهوة مختصة. متوافق مع اشتراطات هيئة الغذاء والدواء.">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Strict CSP: scripts may only load from same origin (no inline JS / eval). -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;900&family=Tajawal:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/menu.css">
+  <link rel="icon" href="assets/logo.jpg">
+</head>
+<body>
+  <div class="shell">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-topbar">
+        <button class="lang-toggle" id="langBtn" type="button" aria-label="Language"></button>
+        <div class="entry-icons" id="entryIcons"></div>
+      </div>
+      <img class="brand-logo" id="heroLogo" alt="Luxury Crop" width="200" height="64">
+      <h1 class="brand-ar" id="brandAr"></h1>
+      <div class="brand-en" id="brandEn"></div>
+      <div class="tagline" id="tagline"></div>
+      <div class="hero-meta" id="heroMeta"></div>
+    </header>
+
+    <!-- SFDA COMPLIANCE STRIP -->
+    <section class="sfda" aria-label="SFDA compliance">
+      <div class="sfda-head">
+        <svg class="seal" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2l2.5 1.8 3-.3 1 2.9 2.5 1.8-1 2.9 1 2.9-2.5 1.8-1 2.9-3-.3L12 22l-2.5-1.8-3 .3-1-2.9L3 16l1-2.9L3 7.2l2.5-1.8 1-2.9 3 .3L12 2Z" fill="#1f7a52"/>
+          <path d="M8.5 12.3l2.3 2.3 4.7-4.9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span id="sfdaHead"></span>
+      </div>
+      <div class="sfda-badges" id="sfdaBadges"></div>
+      <div class="sfda-note" id="sfdaNote"></div>
+    </section>
+
+    <!-- CONTROLS -->
+    <div class="controls" id="controls">
+      <div class="ctrl-row">
+        <span class="mini-brand"><img id="miniLogo" alt=""></span>
+        <label class="search">
+          <span class="sr-only">بحث</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2" stroke-linecap="round"/></svg>
+          <input id="search" type="search" autocomplete="off">
+        </label>
+      </div>
+      <div class="chips" id="filterChips"></div>
+      <div class="chips" id="navChips"></div>
+    </div>
+
+    <!-- MENU -->
+    <main id="menu"></main>
+    <div class="empty" id="empty"></div>
+
+    <!-- FOOTER -->
+    <footer>
+      <img class="f-logo" id="fLogo" alt="">
+      <div class="f-info" id="fInfo"></div>
+      <div class="f-social" id="fSocial"></div>
+      <div class="powered">
+        <div class="pt" id="poweredT"></div>
+        <div class="ps" id="poweredS"></div>
+        <a class="wa" id="poweredWa" target="_blank" rel="noopener"></a>
+      </div>
+      <div class="f-disc" id="fDisc"></div>
+    </footer>
+  </div>
+
+  <!-- back-to-top -->
+  <button class="totop" id="totop" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+  </button>
+
+  <!-- shared modal -->
+  <div class="modal-back" id="modalBack" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <h3 id="modalTitle"></h3>
+        <button class="modal-close" type="button" data-close aria-label="إغلاق">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم | محصول فاخر</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self'; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="icon" href="assets/logo.jpg">
+</head>
+<body>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <img class="logo" id="brandLogo" alt="Luxury Crop">
+    <div class="title">لوحة التحكم<small>محصول فاخر · إدارة المنيو</small></div>
+    <div class="spacer"></div>
+    <span class="saved-dot" id="savedDot"><b></b><span id="savedText">محفوظ تلقائيًا</span></span>
+    <button class="btn sm" id="btnPreview" type="button" aria-label="معاينة">معاينة</button>
+    <a class="btn sm" href="index.html" target="_blank" rel="noopener">فتح المنيو ↗</a>
+    <button class="btn sm" id="btnImport" type="button">استيراد</button>
+    <button class="btn sm" id="btnExport" type="button">تصدير JSON</button>
+    <button class="btn sm ghost danger" id="btnReset" type="button">استعادة</button>
+  </header>
+
+  <div class="wrap" id="app">
+    <!-- CATEGORIES -->
+    <section class="pane cats-pane">
+      <div class="pane-head">
+        <h2>الأقسام</h2><span class="count" id="catCount">0</span><span class="spacer"></span>
+        <button class="btn sm primary" id="addCat" type="button">+ قسم</button>
+      </div>
+      <div class="pane-body" id="catList"></div>
+    </section>
+
+    <!-- ITEMS -->
+    <section class="pane items-pane">
+      <div class="pane-head">
+        <h2 id="itemsTitle">—</h2><span class="count" id="itemCount">0</span><span class="spacer"></span>
+        <button class="btn sm primary" id="addItem" type="button">+ صنف</button>
+      </div>
+      <div class="pane-body">
+        <div class="banner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6h.01" stroke-linecap="round"/></svg>
+          <span>القيم الغذائية تقديرية وتُعتمد منكم. رموز الحساسية استرشادية — راجعوها قبل النشر. اسحب <b>⋮⋮</b> لإعادة الترتيب.</span>
+        </div>
+        <div id="itemList"></div>
+      </div>
+    </section>
+
+    <!-- LIVE PREVIEW -->
+    <section class="pane preview-pane" id="previewPane">
+      <div class="pane-head"><h2>معاينة حية</h2><span class="spacer"></span>
+        <a class="btn sm ghost" href="index.html" target="_blank" rel="noopener">↗</a>
+      </div>
+      <div class="pane-body">
+        <iframe class="preview-frame" id="preview" src="index.html" title="معاينة المنيو" loading="lazy"></iframe>
+        <div class="preview-note">تتحدّث المعاينة تلقائيًا بعد كل تعديل (تقرأ نفس البيانات المحفوظة محليًا).</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- DRAWER (item / category editor) -->
+  <div class="drawer-back" id="drawerBack"></div>
+  <aside class="drawer" id="drawer" aria-label="محرر">
+    <div class="drawer-head">
+      <h3 id="drawerTitle">تعديل</h3>
+      <button class="icon-btn" type="button" data-closedrawer aria-label="إغلاق">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+    <div class="drawer-foot">
+      <button class="btn danger" id="drawerDelete" type="button">حذف</button>
+      <button class="btn primary" id="drawerSave" type="button" data-mode="item">حفظ</button>
+    </div>
+  </aside>
+
+  <input type="file" id="fileInput" class="hidden-file" accept="application/json,.json">
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
