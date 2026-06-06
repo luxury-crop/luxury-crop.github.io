@@ -156,27 +156,52 @@ svg { display: block; }
 .login-gate {
   position: fixed; inset: 0; z-index: 200;
   background: linear-gradient(145deg, #1f140d 0%, #3a2214 55%, #2a1a0e 100%);
-  display: flex; align-items: center; justify-content: center; padding: 20px;
+  display: flex; align-items: center; justify-content: center;
+  /* safe-area for notch phones */
+  padding: max(20px, env(safe-area-inset-top))
+           max(20px, env(safe-area-inset-right))
+           max(20px, env(safe-area-inset-bottom))
+           max(20px, env(safe-area-inset-left));
+  overflow-y: auto;             /* keyboard pushes content → allow scroll */
   transition: opacity .35s var(--ease);
 }
 .login-gate.hidden { opacity: 0; pointer-events: none; }
 .login-card {
   background: var(--panel); border-radius: 22px; padding: 34px 30px 30px;
-  width: 100%; max-width: 390px;
+  width: 100%; max-width: 390px; margin: auto;
   box-shadow: 0 28px 64px rgba(0,0,0,.45); text-align: center;
+  flex-shrink: 0;               /* don't squish on short screens */
 }
 .login-logo { height: 44px; width: auto; margin: 0 auto 20px; mix-blend-mode: multiply; }
 .login-title { font-family: 'Cairo'; font-size: 21px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
 .login-sub { font-size: 13px; color: var(--muted); margin: 0 0 24px; }
 .login-form .field { text-align: right; margin-bottom: 14px; }
+/* iOS zoom fix: inputs ≥16px prevent auto-zoom on focus */
+.login-form input { font-size: 16px !important; }
 .login-err {
   font-size: 13px; color: var(--accent-d); background: var(--accent-soft);
   border-radius: 9px; padding: 9px 13px; margin-bottom: 10px;
   text-align: right; display: none;
 }
 .login-err.show { display: block; }
-.login-btn { width: 100%; justify-content: center; font-size: 15px; padding: 12px; margin-top: 6px; }
+.login-btn { width: 100%; justify-content: center; font-size: 15px; padding: 13px; margin-top: 6px; min-height: 48px; }
 .login-btn:disabled { opacity: .6; cursor: not-allowed; transform: none !important; }
+
+/* small phones (iPhone SE, Galaxy A series …) */
+@media (max-width: 390px) {
+  .login-card { padding: 26px 18px 22px; border-radius: 18px; }
+  .login-logo { height: 36px; margin-bottom: 14px; }
+  .login-title { font-size: 18px; }
+  .login-sub { margin-bottom: 18px; }
+}
+/* landscape mobile — card is taller than viewport */
+@media (max-height: 560px) {
+  .login-gate { align-items: flex-start; }
+  .login-card { padding: 20px 24px 18px; }
+  .login-logo { height: 30px; margin-bottom: 10px; }
+  .login-sub { margin-bottom: 14px; }
+  .login-form .field { margin-bottom: 10px; }
+}
 
 /* ---------- file input (hidden) ---------- */
 .hidden-file { display: none; }
