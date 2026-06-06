@@ -24,8 +24,9 @@
   --radius: 14px;
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { overflow-x: hidden; }   /* prevent horizontal bleed past fixed login gate */
 body {
-  margin: 0; background: var(--bg); color: var(--ink);
+  margin: 0; background: var(--bg); color: var(--ink); overflow-x: hidden;
   font-family: 'Tajawal', system-ui, 'Segoe UI', Tahoma, sans-serif; font-size: 15px; line-height: 1.6;
 }
 h1, h2, h3, h4 { font-family: 'Cairo', sans-serif; margin: 0; }
