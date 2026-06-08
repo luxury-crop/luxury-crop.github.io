@@ -209,7 +209,7 @@
     $('langBtn').innerHTML = I.get('globe') + '<span>' + esc(ti.langBtn) + '</span>';
 
     // hero
-    $('heroLogo').src = (lang === 'ar') ? 'assets/logo-ar-white.png' : 'assets/logo-white.png';  /* white-on-dark wordmark variants — dark espresso hero */
+    $('heroLogo').src = 'assets/logo-white.png';  /* Latin wordmark (white-on-dark) used for both languages — dark espresso hero */
     $('heroLogo').alt = esc(nm(b, 'name') || 'Luxury Crop');
     $('brandAr').textContent = b.name_ar || '';   // logo carries the Latin wordmark; show the Arabic name in both modes
     $('tagline').textContent = nm(b, 'tagline') || '';
