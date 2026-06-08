@@ -89,72 +89,70 @@ button { font-family: inherit; cursor: pointer; }
   padding: 24px 22px 30px;
   text-align: center;
   overflow: hidden;
-  background: linear-gradient(160deg, #ffffff 0%, #fbf7f0 55%, #f6efe1 100%);
+  background: linear-gradient(145deg, #1c1008, #2e1d0d 45%, #1a0f07);
   background-size: 200% 200%;
-  animation: floatBg 28s ease-in-out infinite;
-  border-bottom: 1px solid var(--line);
+  animation: floatBg 22s ease-in-out infinite;
+  border-bottom: 1px solid rgba(255,255,255,.06);
 }
-/* soft warm glow — لمسة دافئة خفيفة */
+/* warm amber glow — نار البُن */
 .hero::before {
-  content: ''; position: absolute; top: -28%; left: 50%; transform: translateX(-50%);
-  width: 130%; height: 145%; z-index: 0; pointer-events: none;
-  background:
-    radial-gradient(circle at 18% 22%, rgba(182,137,47,.09), transparent 55%),
-    radial-gradient(circle at 84% 72%, rgba(225,53,43,.05), transparent 58%);
-  animation: glowPulse 13s ease-in-out infinite;
+  content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+  width: 110%; height: 120%; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 65%, rgba(200,120,40,.28), transparent 60%);
+  animation: glowPulse 7.5s ease-in-out infinite;
 }
-/* faint coffee-dust specks — تلميح بسيط للبُن دون مبالغة */
+/* scattered golden coffee-dust particles */
 .hero::after {
-  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .55;
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background-image:
-    radial-gradient(circle at  8% 14%, rgba(67,48,31,.08) 1.4px, transparent 2.4px),
-    radial-gradient(circle at 24% 42%, rgba(67,48,31,.06) 1px,   transparent 1.8px),
-    radial-gradient(circle at 38%  7%, rgba(67,48,31,.07) 1.2px, transparent 2.2px),
-    radial-gradient(circle at 55% 27%, rgba(67,48,31,.05) 0.8px, transparent 1.5px),
-    radial-gradient(circle at 73% 11%, rgba(67,48,31,.08) 1.5px, transparent 2.5px),
-    radial-gradient(circle at 89% 33%, rgba(67,48,31,.06) 1px,   transparent 2px),
-    radial-gradient(circle at 14% 67%, rgba(67,48,31,.06) 1.3px, transparent 2.2px),
-    radial-gradient(circle at 44% 79%, rgba(67,48,31,.05) 1px,   transparent 1.8px),
-    radial-gradient(circle at 67% 73%, rgba(67,48,31,.07) 1.4px, transparent 2.3px),
-    radial-gradient(circle at 83% 86%, rgba(67,48,31,.05) 1px,   transparent 1.8px),
-    radial-gradient(circle at 29% 91%, rgba(67,48,31,.06) 1.2px, transparent 2px),
-    radial-gradient(circle at 93% 58%, rgba(67,48,31,.04) 0.8px, transparent 1.4px),
-    radial-gradient(circle at  4% 87%, rgba(67,48,31,.05) 1px,   transparent 1.8px),
-    radial-gradient(circle at 61% 94%, rgba(67,48,31,.04) 1.2px, transparent 2px),
-    radial-gradient(circle at 50% 52%, rgba(67,48,31,.03) 0.7px, transparent 1.3px);
+    radial-gradient(circle at  8% 14%, rgba(255,210,130,.26) 1.4px, transparent 2.4px),
+    radial-gradient(circle at 24% 42%, rgba(255,200,100,.18) 1px,   transparent 1.8px),
+    radial-gradient(circle at 38%  7%, rgba(255,220,150,.22) 1.2px, transparent 2.2px),
+    radial-gradient(circle at 55% 27%, rgba(255,190, 80,.16) 0.8px, transparent 1.5px),
+    radial-gradient(circle at 73% 11%, rgba(255,210,130,.24) 1.5px, transparent 2.5px),
+    radial-gradient(circle at 89% 33%, rgba(255,200,100,.20) 1px,   transparent 2px),
+    radial-gradient(circle at 14% 67%, rgba(255,220,150,.20) 1.3px, transparent 2.2px),
+    radial-gradient(circle at 44% 79%, rgba(255,190, 90,.17) 1px,   transparent 1.8px),
+    radial-gradient(circle at 67% 73%, rgba(255,210,130,.22) 1.4px, transparent 2.3px),
+    radial-gradient(circle at 83% 86%, rgba(255,200,100,.16) 1px,   transparent 1.8px),
+    radial-gradient(circle at 29% 91%, rgba(255,220,150,.18) 1.2px, transparent 2px),
+    radial-gradient(circle at 93% 58%, rgba(255,190, 80,.14) 0.8px, transparent 1.4px),
+    radial-gradient(circle at  4% 87%, rgba(255,210,130,.16) 1px,   transparent 1.8px),
+    radial-gradient(circle at 61% 94%, rgba(255,200,120,.14) 1.2px, transparent 2px),
+    radial-gradient(circle at 50% 52%, rgba(255,220,150,.10) 0.7px, transparent 1.3px);
   background-size: 100% 100%;
-  animation: particleDrift 42s ease-in-out infinite alternate;
+  animation: particleDrift 32s ease-in-out infinite alternate;
 }
 .hero > * { position: relative; z-index: 1; animation: fadeUp .8s var(--ease) both; }
 .hero-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 .lang-toggle {
   display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(36,23,18,.045); border: 1px solid rgba(36,23,18,.12); color: var(--ink-2);
+  background: rgba(0,0,0,.28); border: 1px solid rgba(255,255,255,.2); color: #f0e8d8;
   border-radius: 999px; padding: 7px 14px; font-family: 'Cairo', sans-serif;
   font-weight: 700; font-size: 13px; transition: .3s var(--ease);
 }
-.lang-toggle:hover { border-color: rgba(36,23,18,.3); background: rgba(36,23,18,.075); transform: translateY(-1px); }
+.lang-toggle:hover { border-color: rgba(255,255,255,.48); background: rgba(0,0,0,.45); transform: translateY(-1px); }
 .lang-toggle svg { width: 16px; height: 16px; }
 .entry-icons { display: flex; gap: 8px; }
 .entry-btn {
   width: 38px; height: 38px; display: grid; place-items: center;
-  background: rgba(36,23,18,.045); border: 1px solid rgba(36,23,18,.1); border-radius: 12px;
-  color: var(--ink-2); transition: .28s var(--ease);
+  background: rgba(0,0,0,.28); border: 1px solid rgba(255,255,255,.18); border-radius: 12px;
+  color: #e8d8c0; transition: .28s var(--ease);
 }
-.entry-btn:hover { color: #fff; background: var(--accent); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(225,53,43,.3); }
+.entry-btn:hover { color: #fff; background: var(--accent); border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(225,53,43,.35); }
 .entry-btn svg { width: 19px; height: 19px; }
 
 .brand-logo {
   width: min(76%, 340px); height: auto; margin: 8px auto 12px;
-  filter: drop-shadow(0 6px 22px rgba(36,23,18,.1));
+  filter: drop-shadow(0 2px 20px rgba(180,100,30,.45));
   animation: logoIn 1s var(--ease) both; animation-delay: .05s;
 }
-.brand-ar { font-family: 'Cairo'; font-weight: 900; font-size: 27px; letter-spacing: .3px; line-height: 1.1; color: var(--ink); }
+.brand-ar { font-family: 'Cairo'; font-weight: 900; font-size: 27px; letter-spacing: .3px; line-height: 1.1; color: #f0dfc0; }
 .brand-ar .dot { color: var(--accent); }
 .brand-en { display: none; }
-.tagline { color: var(--muted); font-size: 14px; margin-top: 9px; font-weight: 500; }
-.hero-meta { margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); }
-.hero-meta span { display: inline-flex; align-items: center; gap: 5px; background: rgba(36,23,18,.045); border: 1px solid rgba(36,23,18,.09); border-radius: 999px; padding: 5px 12px; }
+.tagline { color: #c0a882; font-size: 14px; margin-top: 9px; font-weight: 500; }
+.hero-meta { margin-top: 16px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; font-size: 12.5px; color: #e0ceb0; }
+.hero-meta span { display: inline-flex; align-items: center; gap: 5px; background: rgba(0,0,0,.22); border: 1px solid rgba(255,255,255,.13); border-radius: 999px; padding: 5px 12px; }
 .hero-meta svg { width: 14px; height: 14px; color: var(--accent); }
 .hero-meta .star svg { color: var(--gold); }
 
