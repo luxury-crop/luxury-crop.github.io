@@ -221,9 +221,6 @@
       heroLogoAr.style.display = 'none';
       $('heroLogo').style.display = '';
     }
-    $('brandAr').textContent = b.name_ar || '';   // logo carries the Latin wordmark; show the Arabic name in both modes
-    $('tagline').textContent = nm(b, 'tagline') || '';
-
     var meta = '';
     if (b.rating) meta += '<span class="star">' + I.get('star') + ' ' + esc(b.rating) + '</span>';
     if (nm(b, 'location')) meta += '<span>' + I.get('pin') + ' ' + esc(nm(b, 'location')) + '</span>';
