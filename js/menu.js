@@ -216,8 +216,10 @@
       heroLogoAr.src = 'assets/logo-ar.png';
       heroLogoAr.alt = 'لاكجري كروب';
       heroLogoAr.style.display = 'block';
+      $('heroLogo').style.display = 'none';
     } else {
       heroLogoAr.style.display = 'none';
+      $('heroLogo').style.display = '';
     }
     $('brandAr').textContent = b.name_ar || '';   // logo carries the Latin wordmark; show the Arabic name in both modes
     $('tagline').textContent = nm(b, 'tagline') || '';

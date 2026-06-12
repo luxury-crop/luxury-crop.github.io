@@ -119,10 +119,10 @@ button { font-family: inherit; cursor: pointer; }
   animation: logoIn 1s var(--ease) both; animation-delay: .05s;
 }
 .brand-logo-ar {
-  width: min(92%, 420px); height: auto; margin: 2px auto 12px;
+  width: min(96%, 440px); height: auto; margin: 10px auto 4px;
   display: none;
-  filter: drop-shadow(0 4px 16px rgba(36,23,18,.06));
-  animation: logoIn 1s var(--ease) both; animation-delay: .15s;
+  filter: drop-shadow(0 6px 22px rgba(36,23,18,.08));
+  animation: logoIn 1s var(--ease) both; animation-delay: .05s;
 }
 .brand-ar { font-family: 'Cairo'; font-weight: 900; font-size: 27px; letter-spacing: .3px; line-height: 1.1; color: var(--ink); }
 .brand-ar .dot { color: var(--accent); }
