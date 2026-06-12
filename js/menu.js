@@ -209,8 +209,16 @@
     $('langBtn').innerHTML = I.get('globe') + '<span>' + esc(ti.langBtn) + '</span>';
 
     // hero
-    $('heroLogo').src = 'assets/logo-white.png';  /* Latin wordmark (white-on-dark) used for both languages — dark espresso hero */
+    $('heroLogo').src = 'assets/logo.png';  /* Latin wordmark (dark) — light beige hero */
     $('heroLogo').alt = esc(nm(b, 'name') || 'Luxury Crop');
+    var heroLogoAr = $('heroLogoAr');
+    if (lang === 'ar') {
+      heroLogoAr.src = 'assets/logo-ar.png';
+      heroLogoAr.alt = 'لاكجري كروب';
+      heroLogoAr.style.display = 'block';
+    } else {
+      heroLogoAr.style.display = 'none';
+    }
     $('brandAr').textContent = b.name_ar || '';   // logo carries the Latin wordmark; show the Arabic name in both modes
     $('tagline').textContent = nm(b, 'tagline') || '';
 
