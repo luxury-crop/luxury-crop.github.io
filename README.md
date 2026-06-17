@@ -54,14 +54,18 @@ Open **`admin.html`**. It's clarity-first and works on phone or desktop.
 
 ### How data persists
 - Every change is **auto-saved to your browser's `localStorage`** (key `luxurycrop.menu`). Reopening the dashboard or the menu on the same browser keeps your edits.
-- `localStorage` is **per-browser/per-device**. To make edits permanent for everyone, **export and publish** (next section).
+- `localStorage` is **per-browser/per-device**. To make edits permanent for everyone, click **نشر دائم** (next section).
 
 ### Export / Import (portable + permanent)
 - **`تصدير JSON`** downloads your current menu as `menu.json`.
 - **`استيراد`** loads a `menu.json` file back in (validated first — see security).
 - **`استعادة`** discards your local edits and restores the original `data/menu.json`.
 
-**To publish edits for real customers:** edit in the dashboard → **Export JSON** → replace `data/menu.json` in the hosted folder with the downloaded file → re-upload. (With Mutawafiq's current service, you just send the changes on WhatsApp and we publish them.)
+**To publish edits for real customers:** edit in the dashboard → click **نشر دائم**. The dashboard commits the edited `data/menu.json` directly to GitHub, so the live menu no longer depends on the customer's browser storage.
+
+The publish button asks for a GitHub fine-grained token with **Contents: Read and write** access to this repository only. The token is kept in `sessionStorage` for the current tab and is never written to the site files or `localStorage`.
+
+`تصدير JSON` is still available as a manual backup/export path.
 
 ---
 
@@ -101,7 +105,7 @@ The café (or an imported file) supplies the menu data, and the public menu rend
 | **CSP** | Both pages ship a **Content-Security-Policy** meta with a strict `script-src 'self'` (no inline/remote scripts), plus locked-down `img/font/connect/frame/object/base` directives. |
 | **Admin code leaking into the public menu** | `admin.js` is loaded **only** by `admin.html`. The public `index.html` contains no editing logic. `admin.html` is marked `noindex,nofollow`. |
 
-> Note: the dashboard is a **client-side editor** with no auth — it's meant to be kept private (don't link it publicly). Treat the exported `menu.json` as the publish artifact.
+> Note: the dashboard is still a **client-side editor** with static front-end auth. Keep `admin.html` private, and use a fine-grained GitHub token limited to this repository when publishing permanent changes.
 
 ---
 

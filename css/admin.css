@@ -60,6 +60,9 @@ svg { display: block; }
 .btn.sm { padding: 5px 9px; font-size: 12.5px; border-radius: 8px; }
 .btn.danger { color: var(--accent-d); }
 .btn.danger:hover { border-color: var(--accent); background: var(--accent-soft); }
+.btn:disabled { opacity: .65; cursor: wait; transform: none !important; }
+.btn.publish-pending { background: var(--amber-soft); border-color: var(--amber); color: #6b5410; }
+.btn.publish-pending:hover { background: #f7e8bd; border-color: var(--amber); }
 
 /* ---------- layout ---------- */
 .wrap { display: grid; grid-template-columns: 250px 1fr 380px; gap: 14px; padding: 14px; align-items: start; }

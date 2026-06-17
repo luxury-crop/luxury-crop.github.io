@@ -2,7 +2,8 @@
    admin.js — Luxury Crop dashboard
    - CRUD categories + items, drag reorder, allergen editor,
      availability toggle, live preview (iframe reads same data).
-   - Persistence: localStorage('luxurycrop.menu') + JSON export/import.
+   - Persistence: localStorage('luxurycrop.menu') for drafts +
+     GitHub publish to data/menu.json for permanent changes.
    - SECURITY: all rendered data is escaped (esc). Imported JSON is
      run through normalizeMenu() which validates structure, coerces
      types, clamps string lengths, filters allergen keys, and drops
@@ -13,6 +14,13 @@
   'use strict';
   var I = window.ICONS;
   var KEY = 'luxurycrop.menu';
+  var GITHUB_TOKEN_KEY = 'lc.github.token.v1';
+  var GITHUB_CONFIG = {
+    owner: 'a7madshiref001-ctrl',
+    repo: 'luxury-crop-menu',
+    branch: 'master',
+    path: 'data/menu.json'
+  };
   var $ = function (s, r) { return (r || document).querySelector(s); };
 
   // ============================================================
@@ -81,6 +89,7 @@
   function clampStr(s, n) { return String(s == null ? '' : s).slice(0, n); }
   function numOrNull(v) { if (v === '' || v == null) return null; var n = Number(v); return isFinite(n) ? n : null; }
   function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function sameMenu(a, b) { try { return JSON.stringify(a) === JSON.stringify(b); } catch (e) { return false; } }
   function slugify(s, fallback) {
     var x = String(s || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     return x || (fallback || ('cat-' + Date.now().toString(36)));
@@ -102,6 +111,8 @@
   var ORIGINAL = null;     // pristine menu.json (for Reset)
   var selCat = 0;
   var dirty = false;
+  var needsPublish = false;
+  var publishing = false;
   var editingItem = null;  // {catIdx, itemIdx} or {catIdx, itemIdx:-1} for new
   var editingCat = null;   // catIdx or -1 for new
 
@@ -180,16 +191,31 @@
   }
 
   // ---------- persistence ----------
-  function persist() {
+  function persist(markPending) {
     try { localStorage.setItem(KEY, JSON.stringify(MODEL)); } catch (e) { toast('تعذّر الحفظ محليًا', true); }
     setDirty(false);
+    if (markPending !== false) setPublishPending(true);
     refreshPreview();
   }
   function setDirty(v) {
     dirty = v;
+    updateSaveState();
+  }
+  function setPublishPending(v) {
+    needsPublish = !!v;
+    updateSaveState();
+  }
+  function updateSaveState() {
     var d = $('#savedDot');
-    d.classList.toggle('dirty', v);
-    $('#savedText').textContent = v ? 'لم يُحفظ' : 'محفوظ تلقائيًا';
+    if (!d) return;
+    d.classList.toggle('dirty', dirty || needsPublish);
+    $('#savedText').textContent = dirty ? 'لم يُحفظ' : (needsPublish ? 'محفوظ محليًا — يحتاج نشر دائم' : 'منشور دائمًا');
+    var p = $('#btnPublish');
+    if (p) {
+      p.classList.toggle('publish-pending', needsPublish);
+      p.disabled = publishing;
+      p.textContent = publishing ? 'جاري النشر…' : 'نشر دائم';
+    }
   }
 
   function load() {
@@ -202,8 +228,10 @@
         if (saved) {
           var n = normalizeMenu(JSON.parse(saved));
           MODEL = n.ok ? n.menu : clone(ORIGINAL);
+          needsPublish = n.ok ? !sameMenu(MODEL, ORIGINAL) : false;
         } else {
           MODEL = clone(ORIGINAL);
+          needsPublish = false;
         }
         boot();
       })
@@ -392,6 +420,106 @@
     dragKind = null; dragIdx = -1;
   }
 
+  // ---------- permanent publish ----------
+  function githubContentUrl() {
+    return 'https://api.github.com/repos/' + encodeURIComponent(GITHUB_CONFIG.owner) + '/' +
+      encodeURIComponent(GITHUB_CONFIG.repo) + '/contents/' + GITHUB_CONFIG.path;
+  }
+  function getGitHubToken() {
+    var token = '';
+    try { token = sessionStorage.getItem(GITHUB_TOKEN_KEY) || ''; } catch (e) {}
+    if (token) return token;
+
+    token = prompt(
+      'ألصق GitHub fine-grained token بصلاحية Contents: Read and write على مستودع luxury-crop-menu فقط.\\n' +
+      'لن يتم حفظ التوكن في الكود؛ سيبقى في هذا التبويب فقط.'
+    );
+    token = String(token || '').trim();
+    if (token) {
+      try { sessionStorage.setItem(GITHUB_TOKEN_KEY, token); } catch (e) {}
+    }
+    return token;
+  }
+  function clearGitHubToken() {
+    try { sessionStorage.removeItem(GITHUB_TOKEN_KEY); } catch (e) {}
+  }
+  function toBase64Utf8(str) {
+    var bytes = new TextEncoder().encode(str);
+    var out = '';
+    var chunk = 0x8000;
+    for (var i = 0; i < bytes.length; i += chunk) {
+      var part = bytes.subarray(i, i + chunk);
+      var s = '';
+      for (var j = 0; j < part.length; j++) s += String.fromCharCode(part[j]);
+      out += s;
+    }
+    return btoa(out);
+  }
+  async function githubRequest(method, url, token, body) {
+    var res = await fetch(url, {
+      method: method,
+      headers: {
+        Accept: 'application/vnd.github+json',
+        Authorization: 'Bearer ' + token,
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json'
+      },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    if (!res.ok) {
+      var detail = '';
+      try {
+        var json = await res.json();
+        detail = json && json.message ? json.message : '';
+      } catch (e) {
+        try { detail = await res.text(); } catch (x) {}
+      }
+      var err = new Error(detail || ('GitHub HTTP ' + res.status));
+      err.status = res.status;
+      throw err;
+    }
+    return res.status === 204 ? null : res.json();
+  }
+  function explainGitHubError(err) {
+    if (err.status === 401 || err.status === 403) {
+      clearGitHubToken();
+      return 'صلاحية GitHub غير صحيحة أو لا تملك Contents: Read and write لهذا المستودع. أنشئ token محدود للمستودع ثم حاول مرة أخرى.';
+    }
+    if (err.status === 404) return 'لم يتم العثور على المستودع أو ملف data/menu.json بهذه الصلاحية.';
+    if (err.status === 409) return 'حصل تعارض أثناء النشر. أعد تحميل لوحة التحكم ثم حاول مرة أخرى.';
+    return 'تعذّر النشر على GitHub: ' + (err.message || err);
+  }
+  async function publishToGitHub() {
+    if (!MODEL || publishing) return;
+    var token = getGitHubToken();
+    if (!token) return;
+
+    publishing = true;
+    updateSaveState();
+    try {
+      var url = githubContentUrl();
+      var current = await githubRequest('GET', url + '?ref=' + encodeURIComponent(GITHUB_CONFIG.branch), token);
+      var content = JSON.stringify(MODEL, null, 2) + '\n';
+      await githubRequest('PUT', url, token, {
+        message: 'Update menu data from admin dashboard',
+        content: toBase64Utf8(content),
+        sha: current.sha,
+        branch: GITHUB_CONFIG.branch
+      });
+      ORIGINAL = clone(MODEL);
+      setPublishPending(false);
+      setDirty(false);
+      toast('تم النشر الدائم على GitHub');
+      alert('تم نشر التعديلات نهائيًا. قد يحتاج الموقع دقيقة أو دقيقتين حتى تظهر النسخة الجديدة للزوار.');
+    } catch (err) {
+      toast('تعذّر النشر الدائم', true);
+      alert(explainGitHubError(err));
+    } finally {
+      publishing = false;
+      updateSaveState();
+    }
+  }
+
   // ---------- export / import / reset ----------
   function exportJSON() {
     var blob = new Blob([JSON.stringify(MODEL, null, 2)], { type: 'application/json' });
@@ -416,7 +544,7 @@
   function resetAll() {
     if (!confirm('استرجاع البيانات الأصلية وإلغاء كل تعديلاتك المحفوظة؟')) return;
     try { localStorage.removeItem(KEY); } catch (e) {}
-    MODEL = clone(ORIGINAL); selCat = 0; persist(); render(); toast('تمت الاستعادة');
+    MODEL = clone(ORIGINAL); selCat = 0; setPublishPending(false); setDirty(false); render(); refreshPreview(); toast('تمت الاستعادة');
   }
 
   // ---------- preview ----------
@@ -453,6 +581,7 @@
       if (t.closest('#drawerDelete')) { (editingCat != null && editingCat >= -0 && $('#drawerSave').dataset.mode === 'cat') ? deleteCat() : (editingItem && deleteItem(editingItem.catIdx, editingItem.itemIdx)); return; }
       if (t.closest('[data-closedrawer]') || t === $('#drawerBack')) { closeDrawer(); return; }
       if (t.closest('#btnExport')) { exportJSON(); return; }
+      if (t.closest('#btnPublish')) { publishToGitHub(); return; }
       if (t.closest('#btnImport')) { $('#fileInput').click(); return; }
       if (t.closest('#btnReset')) { resetAll(); return; }
       if (t.closest('#btnPreview')) { togglePreview(); return; }
