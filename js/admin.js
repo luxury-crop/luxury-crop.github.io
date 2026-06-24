@@ -425,7 +425,7 @@
   var GH_REPO = 'luxury-crop.github.io';
   var GH_BRANCH = 'main';
   var GH_WORKFLOW = 'publish-menu.yml';
-  var GH_TOKEN = 'PASTE_ACTIONS_ONLY_TOKEN_HERE';
+  var GH_TOKEN = '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';
   function toBase64Utf8(str) {
     var bytes = new TextEncoder().encode(str);
     var out = '';
