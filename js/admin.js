@@ -392,6 +392,28 @@
     dragKind = null; dragIdx = -1;
   }
 
+  // ---------- publish (permanent save to GitHub) ----------
+  var PUBLISH_URL = 'https://luxury-crop-menu.netlify.app/.netlify/functions/save-menu';
+  var PUBLISH_KEY = '72221cfd51551fc2e92cea26a71cf4c664c74dd9d99b6b76';
+  function publishMenu() {
+    var btn = $('#btnPublish');
+    if (btn) { btn.disabled = true; btn.textContent = 'جاري النشر…'; }
+    fetch(PUBLISH_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + PUBLISH_KEY },
+      body: JSON.stringify(MODEL)
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, json: j }; });
+    }).then(function (res) {
+      if (res.ok && res.json && res.json.ok) toast('تم النشر الدائم بنجاح');
+      else toast((res.json && res.json.error) || 'تعذّر النشر', true);
+    }).catch(function () {
+      toast('تعذّر الاتصال بخدمة النشر — جرّب VPN لو الاتصال محجوب', true);
+    }).then(function () {
+      if (btn) { btn.disabled = false; btn.textContent = 'حفظ دائم'; }
+    });
+  }
+
   // ---------- export / import / reset ----------
   function exportJSON() {
     var blob = new Blob([JSON.stringify(MODEL, null, 2)], { type: 'application/json' });
@@ -453,6 +475,7 @@
       if (t.closest('#drawerDelete')) { (editingCat != null && editingCat >= -0 && $('#drawerSave').dataset.mode === 'cat') ? deleteCat() : (editingItem && deleteItem(editingItem.catIdx, editingItem.itemIdx)); return; }
       if (t.closest('[data-closedrawer]') || t === $('#drawerBack')) { closeDrawer(); return; }
       if (t.closest('#btnExport')) { exportJSON(); return; }
+      if (t.closest('#btnPublish')) { publishMenu(); return; }
       if (t.closest('#btnImport')) { $('#fileInput').click(); return; }
       if (t.closest('#btnReset')) { resetAll(); return; }
       if (t.closest('#btnPreview')) { togglePreview(); return; }
