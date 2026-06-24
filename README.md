@@ -54,14 +54,18 @@ Open **`admin.html`**. It's clarity-first and works on phone or desktop.
 
 ### How data persists
 - Every change is **auto-saved to your browser's `localStorage`** (key `luxurycrop.menu`). Reopening the dashboard or the menu on the same browser keeps your edits.
-- `localStorage` is **per-browser/per-device**. To make edits permanent for everyone, **export and publish** (next section).
+- `localStorage` is **per-browser/per-device**. To make edits permanent for everyone, click **حفظ دائم** (next section).
 
 ### Export / Import (portable + permanent)
 - **`تصدير JSON`** downloads your current menu as `menu.json`.
 - **`استيراد`** loads a `menu.json` file back in (validated first — see security).
 - **`استعادة`** discards your local edits and restores the original `data/menu.json`.
 
-**To publish edits for real customers:** edit in the dashboard → **Export JSON** → replace `data/menu.json` in the hosted folder with the downloaded file → re-upload. (With Mutawafiq's current service, you just send the changes on WhatsApp and we publish them.)
+**To publish edits for real customers:** edit in the dashboard → click **حفظ دائم**. The dashboard POSTs the edited menu to a Netlify serverless function (`netlify/functions/save-menu.js`), which commits `data/menu.json` directly to the live GitHub Pages repo (`luxury-crop/luxury-crop.github.io`) via the GitHub Contents API. The live menu no longer depends on any one browser's storage.
+
+The GitHub write token (`GITHUB_TOKEN`) lives only as a Netlify environment variable — it is never sent to or stored in the browser. The browser instead carries a separate, low-stakes shared key (`ADMIN_PUBLISH_KEY`, hardcoded in `admin.js`) that just gates the function endpoint against random callers; rotate it by updating both the Netlify env var and `admin.js` if it's ever exposed.
+
+`تصدير JSON` is still available as a manual backup/export path.
 
 ---
 
@@ -100,8 +104,10 @@ The café (or an imported file) supplies the menu data, and the public menu rend
 | **Code injection** | No `eval`, no `new Function`, no inline event handlers — all events are wired via `addEventListener` delegation. |
 | **CSP** | Both pages ship a **Content-Security-Policy** meta with a strict `script-src 'self'` (no inline/remote scripts), plus locked-down `img/font/connect/frame/object/base` directives. |
 | **Admin code leaking into the public menu** | `admin.js` is loaded **only** by `admin.html`. The public `index.html` contains no editing logic. `admin.html` is marked `noindex,nofollow`. |
+| **GitHub write token exposure** | The token never reaches the browser. `publishMenu()` calls a Netlify function (`save-menu.js`) over HTTPS with only a low-stakes shared key; the function holds `GITHUB_TOKEN` as a server-side env var and is the only thing that talks to GitHub's API. |
+| **Unauthorized calls to the publish endpoint** | The function rejects any request whose `Authorization` header doesn't match `ADMIN_PUBLISH_KEY`, and only accepts JSON with a `categories` array under a size cap. |
 
-> Note: the dashboard is a **client-side editor** with no auth — it's meant to be kept private (don't link it publicly). Treat the exported `menu.json` as the publish artifact.
+> Note: the dashboard's login gate is still **client-side, static-hash auth** — adequate to keep casual visitors out, not a substitute for keeping `admin.html`'s URL private. The real write privilege (the GitHub token) is the part that's properly locked away, server-side.
 
 ---
 

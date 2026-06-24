@@ -2,7 +2,8 @@
    admin.js — Luxury Crop dashboard
    - CRUD categories + items, drag reorder, allergen editor,
      availability toggle, live preview (iframe reads same data).
-   - Persistence: localStorage('luxurycrop.menu') + JSON export/import.
+   - Persistence: localStorage('luxurycrop.menu') for drafts +
+     GitHub publish to data/menu.json for permanent changes.
    - SECURITY: all rendered data is escaped (esc). Imported JSON is
      run through normalizeMenu() which validates structure, coerces
      types, clamps string lengths, filters allergen keys, and drops
@@ -81,6 +82,7 @@
   function clampStr(s, n) { return String(s == null ? '' : s).slice(0, n); }
   function numOrNull(v) { if (v === '' || v == null) return null; var n = Number(v); return isFinite(n) ? n : null; }
   function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function sameMenu(a, b) { try { return JSON.stringify(a) === JSON.stringify(b); } catch (e) { return false; } }
   function slugify(s, fallback) {
     var x = String(s || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     return x || (fallback || ('cat-' + Date.now().toString(36)));
@@ -102,6 +104,8 @@
   var ORIGINAL = null;     // pristine menu.json (for Reset)
   var selCat = 0;
   var dirty = false;
+  var needsPublish = false;
+  var publishing = false;
   var editingItem = null;  // {catIdx, itemIdx} or {catIdx, itemIdx:-1} for new
   var editingCat = null;   // catIdx or -1 for new
 
@@ -180,16 +184,31 @@
   }
 
   // ---------- persistence ----------
-  function persist() {
+  function persist(markPending) {
     try { localStorage.setItem(KEY, JSON.stringify(MODEL)); } catch (e) { toast('تعذّر الحفظ محليًا', true); }
     setDirty(false);
+    if (markPending !== false) setPublishPending(true);
     refreshPreview();
   }
   function setDirty(v) {
     dirty = v;
+    updateSaveState();
+  }
+  function setPublishPending(v) {
+    needsPublish = !!v;
+    updateSaveState();
+  }
+  function updateSaveState() {
     var d = $('#savedDot');
-    d.classList.toggle('dirty', v);
-    $('#savedText').textContent = v ? 'لم يُحفظ' : 'محفوظ تلقائيًا';
+    if (!d) return;
+    d.classList.toggle('dirty', dirty || needsPublish);
+    $('#savedText').textContent = dirty ? 'لم يُحفظ' : (needsPublish ? 'محفوظ محليًا — يحتاج نشر دائم' : 'منشور دائمًا');
+    var p = $('#btnPublish');
+    if (p) {
+      p.classList.toggle('publish-pending', needsPublish);
+      p.disabled = publishing;
+      p.textContent = publishing ? 'جاري النشر…' : 'حفظ دائم';
+    }
   }
 
   function load() {
@@ -202,8 +221,10 @@
         if (saved) {
           var n = normalizeMenu(JSON.parse(saved));
           MODEL = n.ok ? n.menu : clone(ORIGINAL);
+          needsPublish = n.ok ? !sameMenu(MODEL, ORIGINAL) : false;
         } else {
           MODEL = clone(ORIGINAL);
+          needsPublish = false;
         }
         boot();
       })
@@ -392,25 +413,37 @@
     dragKind = null; dragIdx = -1;
   }
 
-  // ---------- publish (permanent save to GitHub) ----------
+  // ---------- permanent publish ----------
+  // Publishing goes through a Netlify serverless function (save-menu),
+  // never directly to GitHub's API from the browser — the GitHub write
+  // token lives server-side only. A separate low-stakes shared key
+  // gates the endpoint (see netlify/functions/save-menu.js).
   var PUBLISH_URL = 'https://luxury-crop-menu.netlify.app/.netlify/functions/save-menu';
   var PUBLISH_KEY = '72221cfd51551fc2e92cea26a71cf4c664c74dd9d99b6b76';
   function publishMenu() {
-    var btn = $('#btnPublish');
-    if (btn) { btn.disabled = true; btn.textContent = 'جاري النشر…'; }
+    if (!MODEL || publishing) return;
+    publishing = true;
+    updateSaveState();
     fetch(PUBLISH_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + PUBLISH_KEY },
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + PUBLISH_KEY },
       body: JSON.stringify(MODEL)
     }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, json: j }; });
     }).then(function (res) {
-      if (res.ok && res.json && res.json.ok) toast('تم النشر الدائم بنجاح');
-      else toast((res.json && res.json.error) || 'تعذّر النشر', true);
+      if (res.ok && res.json && res.json.ok) {
+        ORIGINAL = clone(MODEL);
+        setPublishPending(false);
+        setDirty(false);
+        toast('تم النشر الدائم بنجاح');
+      } else {
+        toast((res.json && res.json.error) || 'تعذّر النشر', true);
+      }
     }).catch(function () {
       toast('تعذّر الاتصال بخدمة النشر — جرّب VPN لو الاتصال محجوب', true);
     }).then(function () {
-      if (btn) { btn.disabled = false; btn.textContent = 'حفظ دائم'; }
+      publishing = false;
+      updateSaveState();
     });
   }
 
@@ -438,7 +471,7 @@
   function resetAll() {
     if (!confirm('استرجاع البيانات الأصلية وإلغاء كل تعديلاتك المحفوظة؟')) return;
     try { localStorage.removeItem(KEY); } catch (e) {}
-    MODEL = clone(ORIGINAL); selCat = 0; persist(); render(); toast('تمت الاستعادة');
+    MODEL = clone(ORIGINAL); selCat = 0; setPublishPending(false); setDirty(false); render(); refreshPreview(); toast('تمت الاستعادة');
   }
 
   // ---------- preview ----------
