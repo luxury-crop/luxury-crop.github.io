@@ -1,0 +1,27 @@
+name: Publish menu
+on:
+  repository_dispatch:
+    types: [publish-menu]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write menu.json
+        env:
+          MENU_JSON: ${{ toJson(github.event.client_payload.menu) }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            const menu = JSON.parse(process.env.MENU_JSON);
+            if (!menu || !Array.isArray(menu.categories)) { console.error('invalid menu'); process.exit(1); }
+            fs.writeFileSync('data/menu.json', JSON.stringify(menu, null, 2) + '\n');
+          "
+      - name: Commit and push
+        run: |
+          git config user.name "luxury-crop-bot"
+          git config user.email "actions@github.com"
+          git add data/menu.json
+          git diff --cached --quiet && echo "no changes" && exit 0
+          git commit -m "تحديث المنيو من لوحة الإدارة"
+          git push
