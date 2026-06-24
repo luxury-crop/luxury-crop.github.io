@@ -414,33 +414,51 @@
   }
 
   // ---------- permanent publish ----------
-  // Publishing goes through a Netlify serverless function (save-menu),
-  // never directly to GitHub's API from the browser — the GitHub write
-  // token lives server-side only. A separate low-stakes shared key
-  // gates the endpoint (see netlify/functions/save-menu.js).
-  var PUBLISH_URL = 'https://luxury-crop-menu.netlify.app/.netlify/functions/save-menu';
-  var PUBLISH_KEY = '72221cfd51551fc2e92cea26a71cf4c664c74dd9d99b6b76';
+  // Triggers a GitHub Actions workflow (workflow_dispatch) instead of
+  // writing data/menu.json directly. GH_TOKEN below only needs "Actions:
+  // write" on this one repo to start the workflow — it has NO access to
+  // repo contents. The actual file write happens inside the workflow run,
+  // authenticated by GitHub's own auto-issued token (never exposed here).
+  // api.github.com (not *.netlify.app) is used because Netlify's domain
+  // is blocked on the operator's network.
+  var GH_OWNER = 'luxury-crop';
+  var GH_REPO = 'luxury-crop.github.io';
+  var GH_BRANCH = 'main';
+  var GH_WORKFLOW = 'publish-menu.yml';
+  var GH_TOKEN = 'PASTE_ACTIONS_ONLY_TOKEN_HERE';
+  function toBase64Utf8(str) {
+    var bytes = new TextEncoder().encode(str);
+    var out = '';
+    for (var i = 0; i < bytes.length; i++) out += String.fromCharCode(bytes[i]);
+    return btoa(out);
+  }
   function publishMenu() {
     if (!MODEL || publishing) return;
     publishing = true;
     updateSaveState();
-    fetch(PUBLISH_URL, {
+    var url = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/actions/workflows/' + GH_WORKFLOW + '/dispatches';
+    var menuB64 = toBase64Utf8(JSON.stringify(MODEL, null, 2) + '\n');
+    fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + PUBLISH_KEY },
-      body: JSON.stringify(MODEL)
+      headers: {
+        Accept: 'application/vnd.github+json',
+        Authorization: 'Bearer ' + GH_TOKEN,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ref: GH_BRANCH, inputs: { menu_b64: menuB64 } })
     }).then(function (r) {
-      return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, json: j }; });
-    }).then(function (res) {
-      if (res.ok && res.json && res.json.ok) {
+      if (r.status === 204) {
         ORIGINAL = clone(MODEL);
         setPublishPending(false);
         setDirty(false);
-        toast('تم النشر الدائم بنجاح');
+        toast('تم بدء النشر الدائم — قد يحتاج دقيقة ليظهر على الموقع');
       } else {
-        toast((res.json && res.json.error) || 'تعذّر النشر', true);
+        return r.json().catch(function () { return {}; }).then(function (j) {
+          toast((j && j.message) || 'تعذّر بدء النشر', true);
+        });
       }
     }).catch(function () {
-      toast('تعذّر الاتصال بخدمة النشر — جرّب VPN لو الاتصال محجوب', true);
+      toast('تعذّر الاتصال بـ GitHub', true);
     }).then(function () {
       publishing = false;
       updateSaveState();
