@@ -340,6 +340,181 @@
       ]
     },
     {
+      "id": "22760",
+      "slug": "bakery",
+      "name_ar": "المخبوزات والحلا",
+      "name_en": "Bakery & Sweets",
+      "sub_ar": "حلويات وكيك طازج",
+      "sub_en": "Fresh cakes & desserts",
+      "items": [
+        {
+          "id": "170309",
+          "name_ar": "كوكيز رقائق الشوكولاته",
+          "name_en": "Chocolate Chip Cookie",
+          "desc_ar": "كوكيز مع رقائق الشوكلاته البلجيكية الفاخرة",
+          "desc_en": "Cookie with premium Belgian chocolate chips.",
+          "price": 10,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "eggs",
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 220,
+          "caffeine_mg": 5,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "193000",
+          "name_ar": "كوكيز شوكلاته Dark",
+          "name_en": "Dark Chocolate Cookie",
+          "desc_ar": "كوكيز Dark شوكلاته بلجيكية",
+          "desc_en": "Dark Belgian chocolate cookie.",
+          "price": 10,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "eggs",
+            "milk"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 220,
+          "caffeine_mg": 10,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170311",
+          "name_ar": "ماتيلدا كيك شوكلاته",
+          "name_en": "Matilda Chocolate Cake",
+          "desc_ar": "ماتيلدا كيك شوكلاته بلجيكية",
+          "desc_en": "Matilda cake with Belgian chocolate.",
+          "price": 20,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 410,
+          "caffeine_mg": 10,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170310",
+          "name_ar": "كوكنت مانجو",
+          "name_en": "Coconut Mango Cake",
+          "desc_ar": "كيك مع صوص المانجو وجوز الهند",
+          "desc_en": "Cake with mango sauce and coconut.",
+          "price": 20,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs",
+            "treenuts"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 400,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170315",
+          "name_ar": "تشيز كيك مانجو",
+          "name_en": "Mango Cheesecake",
+          "desc_ar": "مكونات التشيز كيك مضاف إليها طبقة صوص المانجو",
+          "desc_en": "Cheesecake topped with a mango sauce layer.",
+          "price": 20,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 420,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "170313",
+          "name_ar": "تراميسو",
+          "name_en": "Tiramisu",
+          "desc_ar": "طبقة بسكوت فاخرة (ليدي فنجر) مشربة بالقهوة ومضاف إليها كريمة وطبقة من بودرة الكاكاو",
+          "desc_en": "Premium ladyfinger layers soaked in coffee, cream, and a cocoa dusting.",
+          "price": 20,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 380,
+          "caffeine_mg": 30,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "201080",
+          "name_ar": "سينابون رولز",
+          "name_en": "Cinnamon Rolls",
+          "desc_ar": "لفائف القرفة",
+          "desc_en": "Cinnamon rolls.",
+          "price": 16,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [
+            "gluten",
+            "milk",
+            "eggs"
+          ],
+          "allergens_confirmed": false,
+          "kcal": 330,
+          "caffeine_mg": 0,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        },
+        {
+          "id": "xmqvitfx45ss",
+          "name_ar": " تشيز توت",
+          "name_en": "berry chese",
+          "desc_ar": "",
+          "desc_en": "",
+          "price": 22,
+          "currency": "SAR",
+          "image": null,
+          "allergens": [],
+          "allergens_confirmed": false,
+          "kcal": 400,
+          "caffeine_mg": 10,
+          "nutrition_estimated": true,
+          "high_sodium": false,
+          "available": true
+        }
+      ]
+    },
+    {
       "id": "22804",
       "slug": "espresso",
       "name_ar": "الإسبريسو",
@@ -983,164 +1158,6 @@
           "allergens": [],
           "allergens_confirmed": false,
           "kcal": 140,
-          "caffeine_mg": 0,
-          "nutrition_estimated": true,
-          "high_sodium": false,
-          "available": true
-        }
-      ]
-    },
-    {
-      "id": "22760",
-      "slug": "bakery",
-      "name_ar": "المخبوزات والحلا",
-      "name_en": "Bakery & Sweets",
-      "sub_ar": "حلويات وكيك طازج",
-      "sub_en": "Fresh cakes & desserts",
-      "items": [
-        {
-          "id": "170309",
-          "name_ar": "كوكيز رقائق الشوكولاته",
-          "name_en": "Chocolate Chip Cookie",
-          "desc_ar": "كوكيز مع رقائق الشوكلاته البلجيكية الفاخرة",
-          "desc_en": "Cookie with premium Belgian chocolate chips.",
-          "price": 10,
-          "currency": "SAR",
-          "image": null,
-          "allergens": [
-            "gluten",
-            "eggs",
-            "milk"
-          ],
-          "allergens_confirmed": false,
-          "kcal": 220,
-          "caffeine_mg": 5,
-          "nutrition_estimated": true,
-          "high_sodium": false,
-          "available": true
-        },
-        {
-          "id": "193000",
-          "name_ar": "كوكيز شوكلاته Dark",
-          "name_en": "Dark Chocolate Cookie",
-          "desc_ar": "كوكيز Dark شوكلاته بلجيكية",
-          "desc_en": "Dark Belgian chocolate cookie.",
-          "price": 10,
-          "currency": "SAR",
-          "image": null,
-          "allergens": [
-            "gluten",
-            "eggs",
-            "milk"
-          ],
-          "allergens_confirmed": false,
-          "kcal": 220,
-          "caffeine_mg": 10,
-          "nutrition_estimated": true,
-          "high_sodium": false,
-          "available": true
-        },
-        {
-          "id": "170311",
-          "name_ar": "ماتيلدا كيك شوكلاته",
-          "name_en": "Matilda Chocolate Cake",
-          "desc_ar": "ماتيلدا كيك شوكلاته بلجيكية",
-          "desc_en": "Matilda cake with Belgian chocolate.",
-          "price": 20,
-          "currency": "SAR",
-          "image": null,
-          "allergens": [
-            "gluten",
-            "milk",
-            "eggs"
-          ],
-          "allergens_confirmed": false,
-          "kcal": 410,
-          "caffeine_mg": 10,
-          "nutrition_estimated": true,
-          "high_sodium": false,
-          "available": true
-        },
-        {
-          "id": "170310",
-          "name_ar": "كوكنت مانجو",
-          "name_en": "Coconut Mango Cake",
-          "desc_ar": "كيك مع صوص المانجو وجوز الهند",
-          "desc_en": "Cake with mango sauce and coconut.",
-          "price": 20,
-          "currency": "SAR",
-          "image": null,
-          "allergens": [
-            "gluten",
-            "milk",
-            "eggs",
-            "treenuts"
-          ],
-          "allergens_confirmed": false,
-          "kcal": 400,
-          "caffeine_mg": 0,
-          "nutrition_estimated": true,
-          "high_sodium": false,
-          "available": true
-        },
-        {
-          "id": "170315",
-          "name_ar": "تشيز كيك مانجو",
-          "name_en": "Mango Cheesecake",
-          "desc_ar": "مكونات التشيز كيك مضاف إليها طبقة صوص المانجو",
-          "desc_en": "Cheesecake topped with a mango sauce layer.",
-          "price": 20,
-          "currency": "SAR",
-          "image": null,
-          "allergens": [
-            "gluten",
-            "milk",
-            "eggs"
-          ],
-          "allergens_confirmed": false,
-          "kcal": 420,
-          "caffeine_mg": 0,
-          "nutrition_estimated": true,
-          "high_sodium": false,
-          "available": true
-        },
-        {
-          "id": "170313",
-          "name_ar": "تراميسو",
-          "name_en": "Tiramisu",
-          "desc_ar": "طبقة بسكوت فاخرة (ليدي فنجر) مشربة بالقهوة ومضاف إليها كريمة وطبقة من بودرة الكاكاو",
-          "desc_en": "Premium ladyfinger layers soaked in coffee, cream, and a cocoa dusting.",
-          "price": 20,
-          "currency": "SAR",
-          "image": null,
-          "allergens": [
-            "gluten",
-            "milk",
-            "eggs"
-          ],
-          "allergens_confirmed": false,
-          "kcal": 380,
-          "caffeine_mg": 30,
-          "nutrition_estimated": true,
-          "high_sodium": false,
-          "available": true
-        },
-        {
-          "id": "201080",
-          "name_ar": "سينابون رولز",
-          "name_en": "Cinnamon Rolls",
-          "desc_ar": "لفائف القرفة",
-          "desc_en": "Cinnamon rolls.",
-          "price": 16,
-          "currency": "SAR",
-          "image": null,
-          "allergens": [
-            "gluten",
-            "milk",
-            "eggs"
-          ],
-          "allergens_confirmed": false,
-          "kcal": 330,
           "caffeine_mg": 0,
           "nutrition_estimated": true,
           "high_sodium": false,
