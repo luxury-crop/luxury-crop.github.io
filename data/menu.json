@@ -1118,10 +1118,12 @@
           "price": 22,
           "currency": "SAR",
           "image": null,
-          "allergens": [],
+          "allergens": [
+            "milk"
+          ],
           "allergens_confirmed": false,
-          "kcal": 45,
-          "caffeine_mg": 45,
+          "kcal": 190,
+          "caffeine_mg": 70,
           "nutrition_estimated": true,
           "high_sodium": false,
           "available": true
@@ -1135,10 +1137,12 @@
           "price": 22,
           "currency": "SAR",
           "image": null,
-          "allergens": [],
+          "allergens": [
+            "milk"
+          ],
           "allergens_confirmed": false,
-          "kcal": null,
-          "caffeine_mg": 45,
+          "kcal": 190,
+          "caffeine_mg": 70,
           "nutrition_estimated": true,
           "high_sodium": false,
           "available": true
@@ -1152,27 +1156,31 @@
           "price": 22,
           "currency": "SAR",
           "image": null,
-          "allergens": [],
+          "allergens": [
+            "treenuts"
+          ],
           "allergens_confirmed": false,
-          "kcal": 45,
-          "caffeine_mg": 45,
+          "kcal": 190,
+          "caffeine_mg": 70,
           "nutrition_estimated": true,
           "high_sodium": false,
           "available": true
         },
         {
-          "id": "xmrqxqx8528u",
+          "id": "170301",
           "name_ar": "ماتشا بِنك",
           "name_en": "Pink Matcha",
-          "desc_ar": "",
-          "desc_en": "",
+          "desc_ar": "أجود أنواع الماتشا اليابانية بنكهة الورد مع حليب الصويا.",
+          "desc_en": "Finest Japanese matcha, rose flavor, with soy milk.",
           "price": 22,
           "currency": "SAR",
           "image": null,
-          "allergens": [],
+          "allergens": [
+            "soy"
+          ],
           "allergens_confirmed": false,
-          "kcal": 45,
-          "caffeine_mg": 45,
+          "kcal": 180,
+          "caffeine_mg": 70,
           "nutrition_estimated": true,
           "high_sodium": false,
           "available": true
@@ -1198,8 +1206,8 @@
           "image": null,
           "allergens": [],
           "allergens_confirmed": false,
-          "kcal": 6,
-          "caffeine_mg": 70,
+          "kcal": 80,
+          "caffeine_mg": 0,
           "nutrition_estimated": true,
           "high_sodium": false,
           "available": true
@@ -1215,8 +1223,8 @@
           "image": null,
           "allergens": [],
           "allergens_confirmed": false,
-          "kcal": 6,
-          "caffeine_mg": 70,
+          "kcal": 90,
+          "caffeine_mg": 0,
           "nutrition_estimated": true,
           "high_sodium": false,
           "available": true
@@ -1232,8 +1240,8 @@
           "image": null,
           "allergens": [],
           "allergens_confirmed": false,
-          "kcal": 6,
-          "caffeine_mg": 70,
+          "kcal": 90,
+          "caffeine_mg": 0,
           "nutrition_estimated": true,
           "high_sodium": false,
           "available": true
@@ -1249,8 +1257,8 @@
           "image": null,
           "allergens": [],
           "allergens_confirmed": false,
-          "kcal": 6,
-          "caffeine_mg": 70,
+          "kcal": 90,
+          "caffeine_mg": 0,
           "nutrition_estimated": true,
           "high_sodium": false,
           "available": true
