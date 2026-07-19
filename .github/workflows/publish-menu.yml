@@ -3,8 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       menu_b64:
-        description: 'Base64-encoded menu.json content'
+        description: 'Base64-encoded menu.json content (optionally gzipped)'
         required: true
+        type: string
+      encoding:
+        description: 'plain | gzip'
+        required: false
+        default: 'plain'
         type: string
 permissions:
   contents: write
@@ -17,13 +22,17 @@ jobs:
         run: |
           node -e "
             const fs = require('fs');
-            const json = Buffer.from(process.env.MENU_B64, 'base64').toString('utf-8');
+            const raw = Buffer.from(process.env.MENU_B64, 'base64');
+            const json = (process.env.ENCODING === 'gzip'
+              ? require('zlib').gunzipSync(raw)
+              : raw).toString('utf-8');
             const menu = JSON.parse(json);
             if (!menu || !Array.isArray(menu.categories)) { console.error('invalid menu'); process.exit(1); }
             fs.writeFileSync('data/menu.json', JSON.stringify(menu, null, 2) + '\n');
           "
         env:
           MENU_B64: ${{ inputs.menu_b64 }}
+          ENCODING: ${{ inputs.encoding }}
       - name: Commit and push
         run: |
           git config user.name "luxury-crop-bot"

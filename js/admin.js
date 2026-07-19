@@ -14,6 +14,7 @@
   'use strict';
   var I = window.ICONS;
   var KEY = 'luxurycrop.menu';
+  var BASE_KEY = 'luxurycrop.menu.base';  // published menu the local draft was started from
   var $ = function (s, r) { return (r || document).querySelector(s); };
 
   // ============================================================
@@ -190,6 +191,10 @@
     if (markPending !== false) setPublishPending(true);
     refreshPreview();
   }
+  // records which published menu the current draft sits on top of
+  function setBaseline(menu) {
+    try { localStorage.setItem(BASE_KEY, JSON.stringify(menu)); } catch (e) {}
+  }
   function setDirty(v) {
     dirty = v;
     updateSaveState();
@@ -216,15 +221,41 @@
       .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
       .then(function (j) {
         ORIGINAL = normalizeMenu(j).menu;
-        var saved = null;
-        try { saved = localStorage.getItem(KEY); } catch (e) {}
-        if (saved) {
-          var n = normalizeMenu(JSON.parse(saved));
-          MODEL = n.ok ? n.menu : clone(ORIGINAL);
-          needsPublish = n.ok ? !sameMenu(MODEL, ORIGINAL) : false;
-        } else {
+        var saved = null, base = null;
+        try { saved = localStorage.getItem(KEY); base = localStorage.getItem(BASE_KEY); } catch (e) {}
+
+        // The local draft must never silently win over the published menu:
+        // doing so let a stale tab/device republish an old copy and wipe
+        // items that had been added elsewhere. BASE_KEY holds the published
+        // menu this draft was started from, so we can tell edits apart from
+        // staleness.
+        var n = saved ? normalizeMenu(JSON.parse(saved)) : null;
+        var draft = (n && n.ok) ? n.menu : null;
+        var b = base ? normalizeMenu(JSON.parse(base)) : null;
+        var baseline = (b && b.ok) ? b.menu : null;
+
+        var hasLocalEdits = !!draft && (!baseline || !sameMenu(draft, baseline));
+        var serverMoved = !!baseline && !sameMenu(baseline, ORIGINAL);
+
+        if (!draft || !hasLocalEdits) {
+          // no draft, or draft is just a copy of what was already published
           MODEL = clone(ORIGINAL);
           needsPublish = false;
+          setBaseline(ORIGINAL);
+        } else if (!serverMoved) {
+          // genuine unpublished edits on top of the current published menu
+          MODEL = draft;
+          needsPublish = true;
+        } else {
+          // edited here AND changed elsewhere — ask instead of guessing
+          var keepLocal = confirm(
+            'المنيو المنشور اتغيّر من جهاز تاني، وعندك تعديلات محلية لسه مانتشرتش.\n\n' +
+            'موافق = تفتح النسخة المنشورة (تعديلاتك المحلية هتتلغي).\n' +
+            'إلغاء = تكمّل بتعديلاتك المحلية (لو نشرتها هتمسح تعديلات الجهاز التاني).'
+          ) === false;
+          MODEL = keepLocal ? draft : clone(ORIGINAL);
+          needsPublish = keepLocal;
+          if (!keepLocal) setBaseline(ORIGINAL);
         }
         boot();
       })
@@ -431,30 +462,50 @@
   var GH_WORKFLOW = 'publish-menu.yml';
   var GH_TP = ["Z2l0aHViX3BhdF8xMUNFMllJUVkwQ2l", "QdUhvejdtdGV1X044aklWYWNzYjJIdl", "E0TDBQOWh1MlRxaHI1UnRzMDBJNGV5M", "EV6STd1aUFKV0ZPV0hXN0FyM0F6dmVv"];
   var GH_TOKEN = (function () { try { return decodeURIComponent(escape(atob(GH_TP.join('')))); } catch (e) { return atob(GH_TP.join('')); } })();
-  function toBase64Utf8(str) {
-    var bytes = new TextEncoder().encode(str);
-    var out = '';
-    for (var i = 0; i < bytes.length; i++) out += String.fromCharCode(bytes[i]);
+  function bytesToB64(bytes) {
+    var out = '', chunk = 0x8000;
+    for (var i = 0; i < bytes.length; i += chunk) {
+      out += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+    }
     return btoa(out);
+  }
+  function toBase64Utf8(str) { return bytesToB64(new TextEncoder().encode(str)); }
+  // workflow_dispatch inputs are capped at 65,535 chars. Plain base64 of the
+  // menu was already ~83% of that, so a few dozen more items would have made
+  // publishing fail outright. gzip brings the same menu down to ~11%.
+  function encodePayload(str) {
+    if (typeof CompressionStream === 'undefined') {
+      return Promise.resolve({ data: toBase64Utf8(str), encoding: 'plain' });
+    }
+    var stream = new Blob([str]).stream().pipeThrough(new CompressionStream('gzip'));
+    return new Response(stream).arrayBuffer().then(function (buf) {
+      return { data: bytesToB64(new Uint8Array(buf)), encoding: 'gzip' };
+    }).catch(function () {
+      return { data: toBase64Utf8(str), encoding: 'plain' };
+    });
   }
   function publishMenu() {
     if (!MODEL || publishing) return;
     publishing = true;
     updateSaveState();
     var url = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/actions/workflows/' + GH_WORKFLOW + '/dispatches';
-    var menuB64 = toBase64Utf8(JSON.stringify(MODEL, null, 2) + '\n');
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/vnd.github+json',
-        Authorization: 'Bearer ' + GH_TOKEN,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ref: GH_BRANCH, inputs: { menu_b64: menuB64 } })
+    var published = clone(MODEL);
+    encodePayload(JSON.stringify(published, null, 2) + '\n').then(function (p) {
+      return fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/vnd.github+json',
+          Authorization: 'Bearer ' + GH_TOKEN,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ref: GH_BRANCH, inputs: { menu_b64: p.data, encoding: p.encoding } })
+      });
     }).then(function (r) {
       if (r.status === 204) {
-        ORIGINAL = clone(MODEL);
-        setPublishPending(false);
+        // snapshot taken before the request — MODEL may have moved on since
+        ORIGINAL = clone(published);
+        setBaseline(published);   // this is now the published state
+        setPublishPending(!sameMenu(MODEL, published));
         setDirty(false);
         toast('تم بدء النشر الدائم — قد يحتاج دقيقة ليظهر على الموقع');
       } else {
@@ -494,7 +545,7 @@
   function resetAll() {
     if (!confirm('استرجاع البيانات الأصلية وإلغاء كل تعديلاتك المحفوظة؟')) return;
     try { localStorage.removeItem(KEY); } catch (e) {}
-    MODEL = clone(ORIGINAL); selCat = 0; setPublishPending(false); setDirty(false); render(); refreshPreview(); toast('تمت الاستعادة');
+    MODEL = clone(ORIGINAL); setBaseline(ORIGINAL); selCat = 0; setPublishPending(false); setDirty(false); render(); refreshPreview(); toast('تمت الاستعادة');
   }
 
   // ---------- preview ----------
