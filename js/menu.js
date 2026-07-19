@@ -90,11 +90,23 @@
   function nm(o, base) { return lang === 'ar' ? o[base + '_ar'] : o[base + '_en']; }
 
   // ---------- data load ----------
+  // The admin's unpublished draft may only be shown inside the dashboard's
+  // preview iframe. The real customer-facing page must always render the
+  // published data/menu.json — otherwise anyone who has used the dashboard
+  // on this browser keeps seeing their own stale draft on the live site and
+  // has no way to tell what customers actually see.
+  function isPreviewContext() {
+    try {
+      return window.self !== window.top || /[?&]preview=1\b/.test(location.search);
+    } catch (e) { return true; }  // cross-origin frame → treat as embedded
+  }
   function load() {
-    var override = null;
-    try { override = localStorage.getItem('luxurycrop.menu'); } catch (e) {}
-    if (override) {
-      try { DATA = JSON.parse(override); boot(); return; } catch (e) { /* fall through */ }
+    if (isPreviewContext()) {
+      var override = null;
+      try { override = localStorage.getItem('luxurycrop.menu'); } catch (e) {}
+      if (override) {
+        try { DATA = JSON.parse(override); boot(); return; } catch (e) { /* fall through */ }
+      }
     }
     fetch('data/menu.json', { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
